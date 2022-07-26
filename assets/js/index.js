@@ -107,7 +107,7 @@ function prevSlide() {
 }
 //=============================================================
 
-//Слайдер для лотов============================================
+//Слайдер со свайпом для лотов============================================
 const buttonPrev = document.querySelector(".popular-slider__arrows_prev");
 const buttonNext = document.querySelector(".popular-slider__arrows_next");
 const buttonsControl = document.querySelectorAll(".popular-slider__arrows");
@@ -123,7 +123,20 @@ window.onresize = cheсkWidth;
 //События кнопок
 buttonPrev.addEventListener("pointerdown",slidePrev);
 buttonNext.addEventListener("pointerdown", slideNext);
-
+slideContainer.addEventListener("pointerdown", (event)=>{
+    x = event.x ;
+    flag =true;
+    slideContainer.addEventListener("pointermove",(e) =>{
+        if( (x - e.clientX)> 0 && (flag  == true)){
+            flag = false;
+            slideNext();
+        }
+        if( (x - e.clientX) < 0 && (flag  == true)){
+            flag = false;
+            slidePrev();
+        }
+    })
+})
 
 function cheсkWidth(){
     if (window.innerWidth > 992) {
@@ -161,21 +174,6 @@ function slidePrev(){
     })
     cheсkWidth();
 }
-
-slideContainer.addEventListener("pointerdown", (event)=>{
-    x = event.x ;
-    flag =true;
-    slideContainer.addEventListener("pointermove",(e) =>{
-        if( (x - e.clientX)> 0 && (flag  == true)){
-            flag = false;
-            slideNext();
-        }
-        if( (x - e.clientX) < 0 && (flag  == true)){
-            flag = false;
-            slidePrev();
-        }
-    })
-})
 
 //=============================================================================
 
