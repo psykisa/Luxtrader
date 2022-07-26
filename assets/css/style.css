@@ -2250,17 +2250,17 @@ textarea._input {
 @font-face {
   font-family: "Bravo";
   src: url(../fonts/BravoRGRegular.woff) format("woff");
-  font-display: fallback;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "PFDm";
   src: url(../fonts/pfdintextcondpro-medium.woff) format("woff");
-  font-display: fallback;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "PFDr";
   src: url(../fonts/pfdintextcondpro-regular.woff) format("woff");
-  font-display: fallback;
+  font-display: swap;
 }
