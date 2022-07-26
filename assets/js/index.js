@@ -113,6 +113,7 @@ const buttonNext = document.querySelector(".popular-slider__arrows_next");
 const buttonsControl = document.querySelectorAll(".popular-slider__arrows");
 let slideContainer= document.querySelector(".popular-slider__container");
 let slides = document.querySelectorAll(".popular-slider__slide");
+let flag = false;
 let cloneSlide;
 let countSlide;
 let x;
@@ -122,7 +123,6 @@ window.onresize = cheсkWidth;
 //События кнопок
 buttonPrev.addEventListener("pointerdown",slidePrev);
 buttonNext.addEventListener("pointerdown", slideNext);
-
 
 
 function cheсkWidth(){
@@ -139,7 +139,7 @@ function cheсkWidth(){
         (index > countSlide) ?  item.style.display = "none" : item.style.display = "flex";
     });
 }
-function slideNext(e){
+function slideNext(){
     slides = document.querySelectorAll(".popular-slider__slide");
     slideContainer.append(slides[0]);
     slides.forEach((item) => {
@@ -150,7 +150,7 @@ function slideNext(e){
     })
     cheсkWidth();
 }
-function slidePrev(e){
+function slidePrev(){
     slides = document.querySelectorAll(".popular-slider__slide");
     slideContainer.prepend(slides[slides.length - 1]);
     slides.forEach((item) => {
@@ -161,23 +161,22 @@ function slidePrev(e){
     })
     cheсkWidth();
 }
-// slideContainer.addEventListener("pointerdown", (event)=>{
-//     event.stopPropagation();
-//     x = event.x ;
-//     slideContainer.addEventListener("pointermove",(e) =>{
-//         if( (x - e.clientX) > 0){
-//             slideNext();
-//         }
-//         if( (x - e.clientX) < 0){
-        
-//             slidePrev();
-//         }
-//     })
-// })
-// slideContainer.addEventListener("pointerup",()=>{
-// slideContainer.removeEventListener("pointermove", slideNext);
-// slideContainer.removeEventListener("pointermove", slidePrev);
-// })
+
+slideContainer.addEventListener("pointerdown", (event)=>{
+    x = event.x ;
+    flag =true;
+    slideContainer.addEventListener("pointermove",(e) =>{
+        if( (x - e.clientX)> 0 && (flag  == true)){
+            flag = false;
+            slideNext();
+        }
+        if( (x - e.clientX) < 0 && (flag  == true)){
+            flag = false;
+            slidePrev();
+        }
+    })
+})
+
 //=============================================================================
 
 //Слайдер для цитат============================================
