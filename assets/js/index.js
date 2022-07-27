@@ -125,13 +125,14 @@ buttonPrev.addEventListener("pointerdown",slidePrev);
 buttonNext.addEventListener("pointerdown", slideNext);
 slideContainer.addEventListener("pointerdown", (event)=>{
     x = event.x ;
+    console.log(event.y)
     flag =true;
     slideContainer.addEventListener("pointermove",(e) =>{
-        if( (x - e.clientX)> 0 && (flag  == true)){
+        if( (x - e.clientX)> 0 && (flag  == true) && (event.y - e.clientY) == 0){
             flag = false;
             slideNext();
         }
-        if( (x - e.clientX) < 0 && (flag  == true)){
+        if( (x - e.clientX) < 0 && (flag  == true) && (event.y - e.clientY) == 0 ){
             flag = false;
             slidePrev();
         }
